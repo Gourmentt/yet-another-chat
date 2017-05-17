@@ -1,0 +1,33 @@
+this["JST"] = this["JST"] || {};
+
+this["JST"]["frontend/templates/chat/index.html"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<div class="chat-view">\n    <div class="chat-view__login-panel">\n        <span>You are logged in as: ' +
+__e( username ) +
+'</span>\n    </div>\n    <div class="chat-view__messages"></div>\n    <div class="chat-view__users"></div>\n</div>\n';
+
+}
+return __p
+};
+
+this["JST"]["frontend/templates/login/index.html"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<div class="valign-wrapper">\n    <div class="valign-content">\n        <div class="panel panel-default login-form generic-form generic-form--centered">\n            <div class="panel-heading">Welcome to the Chat App!</div>\n            <div class="panel-body">\n                <div class="col-sm-offset-2 login-form__reminder">This app requires an user account\n                    <a href="#register" class="btn btn-link">I don\'t have an account</a>\n                </div>\n\n                <form class="form-horizontal" data-form>\n                    <div class="form-group">\n                        <label for="user-email" class="col-sm-2 control-label">Login</label>\n                        <div class="col-sm-8">\n                            <input type="text" class="form-control" id="user-email" placeholder="Login" data-login\n                                   required>\n                        </div>\n                    </div>\n                    <div class="form-group">\n                        <label for="user-password" class="col-sm-2 control-label">Password</label>\n                        <div class="col-sm-8">\n                            <input type="password" class="form-control" id="user-password" placeholder="Password"\n                                   data-password required>\n                        </div>\n                    </div>\n                    <div class="form-group">\n                        <div class="col-sm-offset-2 col-sm-8 text-right">\n                            <button type="submit" class="btn btn-success" data-submit data-loading-text="Processing...">\n                                Login\n                            </button>\n                        </div>\n                    </div>\n                </form>\n            </div>\n        </div>\n    </div>\n</div>';
+
+}
+return __p
+};
+
+this["JST"]["frontend/templates/registration/index.html"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<div class="valign-wrapper">\n    <div class="valign-content">\n        <div class="panel panel-default registration-form generic-form generic-form--centered">\n            <div class="panel-heading">Welcome to the Chat App!</div>\n            <div class="panel-body">\n                <div class="col-sm-offset-2 login-form__reminder">This app requires an user account\n                    <a href="#login" class="btn btn-link">I\'m already have an account</a>\n                </div>\n\n                <form class="form-horizontal" data-form>\n                    <div class="form-group">\n                        <label for="user-email" class="col-sm-2 control-label">Login</label>\n                        <div class="col-sm-8">\n                            <input type="text" class="form-control" id="user-email" placeholder="Login" data-login\n                                   required>\n                        </div>\n                    </div>\n                    <div class="form-group">\n                        <label for="user-password" class="col-sm-2 control-label">Password</label>\n                        <div class="col-sm-8">\n                            <input type="password" class="form-control" id="user-password" placeholder="Password"\n                                   data-password required>\n                        </div>\n                    </div>\n                    <div class="form-group">\n                        <div class="col-sm-offset-2 col-sm-8 text-right">\n                            <button type="submit" class="btn btn-success" data-loading-text="Processing...">Register\n                                me\n                            </button>\n                        </div>\n                    </div>\n                </form>\n            </div>\n        </div>\n    </div>\n</div>\n';
+
+}
+return __p
+};

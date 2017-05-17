@@ -1,0 +1,35 @@
+{
+  "name": "simple-chat",
+  "private": true,
+  "version": "0.6.0",
+  "description": "Just another chat app",
+  "keywords": [],
+  "dependencies": {
+    "koa": "2.2.0",
+    "koa-router": "7.1.1",
+    "koa-session": "5.0.0",
+    "koa-views": "6.0.2",
+    "koa-static": "3.0.0",
+    "koa-bodyparser": "4.2.0",
+    "koa-socket": "4.4.0",
+    "redis": "2.7.1",
+    "mongoose": "4.9.9",
+    "pug": "2.0.0",
+    "grunt": "1.0.1",
+    "grunt-contrib-jst": "1.0.0"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "dmn": "nodemon app.js"
+  },
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Gourmentt/simple-chat.git"
+  },
+  "author": "Aleksey K.",
+  "license": "GNU GPL",
+  "engines": {
+    "node": "7.10.0"
+  }
+}
