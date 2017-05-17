@@ -1,12 +1,10 @@
 'use strict';
 
 module.exports = {
-    session: {
-        key: 'koa:sess',
-        maxAge: 86400000,
-        overwrite: true,
-        httpOnly: true,
-        signed: true
+    store: {
+        host: '127.0.0.1',
+        port: 6379,
+        ttl: 3600
     },
     assetsPath: './frontend',
     mongoDB: {

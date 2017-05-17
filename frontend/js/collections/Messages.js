@@ -32,7 +32,7 @@
         },
 
         onRemove: function () {
-            App.socket.off('messageAdded');
+            this.stopListening();
         }
     });
 })(App);

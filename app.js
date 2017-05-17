@@ -1,7 +1,7 @@
 const Koa = require('koa');
 const app = new Koa();
 
-var session            = require('koa-session'),
+var session            = require('koa-session-redis'),
     config             = require('./backend/config/main'),
     views              = require('koa-views'),
     util               = require('util'),

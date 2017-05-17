@@ -32,11 +32,24 @@ module.exports = {
         return newUser.save();
     },
 
+    getAll (){
+        return User.find();
+    },
+
     authenticate (user, ctx){
         ctx.session.userId = user._id;
         ctx.session.authenticated = true;
 
         return user.toJSON();
+    },
+
+    broadcastOnlineUsers (io){
+        return this.getAll().then((users) => {
+            let usersData = users.map((user) => {
+                return {login: user.login}
+            });
+            io.emit('usersReset', usersData)
+        });
     },
 
     checkPassword(login, password){

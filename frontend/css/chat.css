@@ -28,7 +28,10 @@
 }
 .chat-view__users {
     padding-left: 10px;
+    padding-right: 15px;
     padding-top: 10px;
+    overflow: auto;
+    height: calc(100% - 50px);
 }
 .chat-view__compose {
     position: absolute;
@@ -94,4 +97,10 @@ span.chat-view-message__author {
     color: grey;
     float: right;
     font-size: 0.8em;
+}
+.chat-view__user {
+    font-weight: bold;
+    font-size: 0.9em;
+    text-align: right;
+    margin-bottom: 2px;
 }

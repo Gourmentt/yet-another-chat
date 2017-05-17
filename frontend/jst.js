@@ -34,6 +34,18 @@ __e( text ) +
 return __p
 };
 
+this["JST"]["frontend/templates/chat/user.html"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<div class="chat-view__user">' +
+__e( login ) +
+'</div>\n';
+
+}
+return __p
+};
+
 this["JST"]["frontend/templates/login/index.html"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;

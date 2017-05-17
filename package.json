@@ -5,18 +5,18 @@
   "description": "Just another chat app",
   "keywords": [],
   "dependencies": {
+    "grunt": "1.0.1",
+    "grunt-contrib-jst": "1.0.0",
     "koa": "2.2.0",
-    "koa-router": "7.1.1",
-    "koa-session": "5.0.0",
-    "koa-views": "6.0.2",
-    "koa-static": "3.0.0",
     "koa-bodyparser": "4.2.0",
+    "koa-router": "7.1.1",
+    "koa-session-redis": "1.1.0",
     "koa-socket": "4.4.0",
-    "redis": "2.7.1",
+    "koa-static": "3.0.0",
+    "koa-views": "6.0.2",
     "mongoose": "4.9.9",
     "pug": "2.0.0-rc.1",
-    "grunt": "1.0.1",
-    "grunt-contrib-jst": "1.0.0"
+    "redis": "2.7.1"
   },
   "scripts": {
     "start": "node app.js",

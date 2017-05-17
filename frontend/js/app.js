@@ -26,6 +26,7 @@
         init: function () {
             this.container = $('#app-container');
             this.initEventDispatcher();
+            App.socket = new io();
             this.initRouter();
             this.initUser();
         },
@@ -36,18 +37,21 @@
             this.eventDispatcher.on('register', this.onRegisterUser, this);
             this.eventDispatcher.on('login', this.onLoginUser, this);
         },
+
         initUser: function () {
             this.curUser = new this.UserModel();
-            this.curUser.populate()
+            this.curUser.fetch()
                 .always(function () {
                     Backbone.history.start();
                 });
         },
+
         initRouter: function () {
             this.router.on('route:chat', this.onChatNav, this);
             this.router.on('route:register', this.onRegisterNav, this);
             this.router.on('route:login', this.onLoginNav, this);
         },
+
 
         // navigation events
         onChatNav: function () {
@@ -57,6 +61,7 @@
                 this.goToView(this.ChatView);
             }
         },
+
         onLoginNav: function () {
             if (!this.isLoggedIn()) {
                 this.goToView(this.LoginView);
@@ -64,6 +69,7 @@
                 this.router.goToChatPage();
             }
         },
+
         onRegisterNav: function () {
             if (!this.isLoggedIn()) {
                 this.goToView(this.RegistrationView);
@@ -71,6 +77,7 @@
                 this.router.goToChatPage();
             }
         },
+
         goToView: function (View) {
             if (this.currentView) { this.currentView.$el.unbind(); }
             this.currentView = new View();
@@ -80,15 +87,18 @@
             return this.curUser.isLoggedIn();
         },
 
+
         // Callbacks for user actions
         onRegisterUser: function () {
             this.logSuccess('Registration complete, navigating to chat');
             this.router.goToChatPage();
         },
+
         onLoginUser: function () {
             this.logSuccess('Login successful, navigating to chat');
             this.router.goToChatPage();
         },
+
 
         // Error and success messages handling
         showError: function (jqXHR) {
@@ -96,9 +106,11 @@
                 message = message || jqXHR.status || 'Error happened, please refresh page';
             this.logError(message);
         },
+
         logError: function (message) {
             toastr.error(message);
         },
+
         logSuccess: function (message) {
             toastr.success(message);
         }

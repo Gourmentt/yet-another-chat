@@ -4,16 +4,11 @@ var User = require('../models/User');
 
 module.exports = {
 
-    getCurrentUser: function (ctx, next) {
+    getCurrentUser: async function (ctx, next) {
         var userId = ctx.session.userId;
-        return User.findById(userId)
-            .then((user) => {
-                ctx.body = user;
-            })
-            .catch((err) => {
-                ctx.response.status=500;
-                ctx.body = err;
-            });
+
+        User.broadcastOnlineUsers(ctx.app._io);
+        ctx.body = await User.findById(userId);
     },
 
     login: async function (ctx) {
@@ -24,6 +19,7 @@ module.exports = {
         try{
             var user = await User.checkPassword(login, password);
             ctx.body = User.authenticate(user, ctx);
+            User.broadcastOnlineUsers(ctx.app._io);
         } catch (err){
             ctx.body = {message: err.message};
             ctx.response.status = 500;
@@ -36,7 +32,7 @@ module.exports = {
             password = reqBody.password,
             user = await User.register(login, password),
             userFormatted = User.authenticate(user, ctx);
-        ctx.app._io.emit('users', userFormatted);
+        User.broadcastOnlineUsers(ctx.app._io);
         ctx.body = userFormatted;
     }
 

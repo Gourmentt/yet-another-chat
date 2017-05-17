@@ -11,12 +11,13 @@
         templates: {
             index: JST['frontend/templates/chat/index.html'],
             message: JST['frontend/templates/chat/message.html'],
+            singleUser: JST['frontend/templates/chat/user.html'],
         },
 
         initialize: function () {
             this.setElement(App.container);
             this.render();
-            this.initMessagesSocket();
+            this.initUsersList();
             this.initMessaging();
             this.cacheViewElements();
         },
@@ -30,11 +31,7 @@
         cacheViewElements: function () {
             this.$messageComposer = this.$('#compose-message');
             this.$messagesList = this.$('.chat-view__messages');
-        },
-
-
-        initMessagesSocket: function () {
-            App.socket = new io();
+            this.$usersList = this.$('.chat-view__users');
         },
 
         initMessaging: function () {
@@ -42,6 +39,11 @@
             this.listenTo(this.messages, 'add', this.renderMessage);
             this.listenTo(this.messages, 'reset', this.renderMessages);
             this.messages.populate();
+        },
+
+        initUsersList: function () {
+            this.users = new App.UsersCollection();
+            this.listenTo(this.users, 'reset', this.renderUsersList);
         },
 
 
@@ -69,11 +71,26 @@
 
         renderMessage: function (message) {
             this.$messagesList.append(this.templates.message(message.attributes));
-            this.scrollToLastMessage(this.$messagesList);
+            this.scrollToBottom(this.$messagesList);
         },
 
-        scrollToLastMessage: function () {
-            this.$messagesList.scrollTop(this.$messagesList.prop('scrollHeight'));
+        scrollToBottom: function ($elem) {
+            $elem.scrollTop($elem.prop('scrollHeight'));
+        },
+
+        remove: function () {
+            this.messages.onRemove();
+            this.users.onRemove();
+        },
+
+        renderUsersList: function () {
+            this.$usersList.empty();
+            this.users.each(this.renderUser, this);
+            this.scrollToBottom(this.$usersList);
+        },
+
+        renderUser: function (user) {
+            this.$usersList.append(this.templates.singleUser(user.attributes));
         }
 
     });
