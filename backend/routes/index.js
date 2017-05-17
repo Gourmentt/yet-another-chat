@@ -12,6 +12,8 @@ module.exports = function (app) {
         .get('/user', userController.getCurrentUser)
         .post('/login', userController.login)
         .post('/register', userController.register)
+        .get('/messages', messagesController.fetchMessages)
+        .post('/messages', messagesController.addNewMessage);
 
     app
         .use(router.routes())

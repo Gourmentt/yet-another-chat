@@ -5,3 +5,93 @@
     bottom: 0;
     left: 0;
 }
+.chat-view__left-panel {
+    width: 80%;
+    border-right: 1px solid #e3e3e3;
+    height: 100%;
+    vertical-align: top;
+    display: inline-block;
+    position: relative;
+}
+.chat-view__right-panel {
+    vertical-align: top;
+    width: 19%;
+    height: 100%;
+    display: inline-block;
+}
+.chat-view__login-panel {
+    text-align: center;
+    width: 100%;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.22);
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.chat-view__users {
+    padding-left: 10px;
+    padding-top: 10px;
+}
+.chat-view__compose {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 80%;
+    padding: 5px;
+}
+.chat-view__compose textarea{
+    width: 100%;
+    height: 100%;
+    border-color: rgba(173, 216, 230, 0.09);
+}
+.chat-view__send-message-btn {
+    position: absolute;
+    right: 50px;
+    bottom: 30px;
+    border: 1px solid rgba(9, 148, 0, 0.52);
+    background: #78d878;
+    border-radius: 25px;
+    width: 50px;
+    height: 50px;
+}
+.chat-view__send-message-btn:hover{
+    background: #6aca6a;
+}
+.no-outline:focus{
+    outline: none;
+}
+.chat-view__messages {
+    height: 80%;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.22);
+    padding: 15px;
+    overflow: auto;
+}
+.chat-view__message {
+    text-align: right;
+    margin-bottom: 10px;
+}
+.chat-view__message--yours {
+    text-align: left;
+}
+.chat-view__message--yours .chat-view__message-body{
+    border: 1px solid #abc1ff;
+    background: #eff3ff;
+}
+
+.chat-view__message-body {
+    max-width: 60%;
+    min-width: 250px;
+    display: inline-block;
+    padding: 10px;
+    border: 1px solid #efeba9;
+    background: #fffeed;
+    box-shadow: 2px 2px 3px -2px grey;
+}
+span.chat-view-message__author {
+    font-weight: bold;
+    float: left;
+}
+.chat-view-message__created {
+    color: grey;
+    float: right;
+    font-size: 0.8em;
+}

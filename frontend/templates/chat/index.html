@@ -1,7 +1,17 @@
 <div class="chat-view">
-    <div class="chat-view__login-panel">
-        <span>You are logged in as: <%- username %></span>
+    <div class="chat-view__left-panel">
+        <div class="chat-view__messages"></div>
+        <div class="chat-view__compose">
+            <textarea id="compose-message" class="no-outline" placeholder="Enter your message here"></textarea>
+            <button type="button" title="Send message" class="no-outline chat-view__send-message-btn" id="send-message-btn">
+                <i class="fa fa-paper-plane-o fa-2x"></i>
+            </button>
+        </div>
     </div>
-    <div class="chat-view__messages"></div>
-    <div class="chat-view__users"></div>
+    <div class="chat-view__right-panel">
+        <div class="chat-view__login-panel">
+            <span>You are logged in as: <strong><%- username %></strong></span>
+        </div>
+        <div class="chat-view__users">No users online</div>
+    </div>
 </div>

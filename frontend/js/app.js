@@ -38,7 +38,7 @@
         },
         initUser: function () {
             this.curUser = new this.UserModel();
-            this.curUser.fetch()
+            this.curUser.populate()
                 .always(function () {
                     Backbone.history.start();
                 });

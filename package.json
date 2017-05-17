@@ -14,7 +14,7 @@
     "koa-socket": "4.4.0",
     "redis": "2.7.1",
     "mongoose": "4.9.9",
-    "pug": "2.0.0",
+    "pug": "2.0.0-rc.1",
     "grunt": "1.0.1",
     "grunt-contrib-jst": "1.0.0"
   },

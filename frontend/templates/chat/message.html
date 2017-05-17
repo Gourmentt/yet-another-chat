@@ -1,0 +1,14 @@
+<div class="chat-view__message <%- yourMessage ? 'chat-view__message--yours' : '' %>">
+  <div class="chat-view__message-body">
+    <div class="chat-view-message__heading">
+      <span class="chat-view-message__author" title="<%- author %>" data-toggle="tooltip">
+        <%- author %>
+      </span>
+      <span title="<%- created %>" class="chat-view-message__created" data-toggle="tooltip">
+        <%- created %>
+      </span>
+    </div>
+    <div class="clearfix"></div>
+    <div class="chat-view-message__body"><%- text %></div>
+  </div>
+</div>
