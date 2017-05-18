@@ -15,7 +15,7 @@ module.exports = {
     },
 
     addNewMessage: async function (ctx) {
-        var body = ctx.request.body,
+        let body = ctx.request.body,
             message = {
                 text: body.text,
                 author: await User.findById(ctx.session.userId)

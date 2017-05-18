@@ -13,7 +13,7 @@ userSchema.methods.toJSON = function(){
         login: this.login
     }
 };
-var User = mongoose.model('User', userSchema);
+let User = mongoose.model('User', userSchema);
 
 module.exports = {
 

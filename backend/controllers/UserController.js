@@ -3,6 +3,13 @@
 let User = require('../models/User'),
     OnlineUsersList = require('../models/OnlineUsersList');
 
+
+let updateUserSession = function (session, user) {
+    session.userId = user._id;
+    session.authenticated = true;
+    session.login = user.login;
+};
+
 module.exports = {
 
     getCurrentUser: async function (ctx, next) {
@@ -16,7 +23,13 @@ module.exports = {
 
     login: async function (ctx) {
         let {login, password} = ctx.request.body,
+            user;
+        try {
             user = await User.checkPassword(login, password);
+        } catch (e){
+            ctx.throw(e, 400);
+            return;
+        }
 
         updateUserSession(ctx.session, user);
         await OnlineUsersList.add(user.login);
@@ -34,7 +47,13 @@ module.exports = {
 
     register: async function (ctx) {
         let {login, password} = ctx.request.body,
+            user;
+        try {
             user = await User.register(login, password);
+        } catch (e){
+            ctx.throw(e, 400);
+            return;
+        }
 
         updateUserSession(ctx.session, user);
         await OnlineUsersList.add(user.login);
@@ -43,10 +62,4 @@ module.exports = {
         ctx.body = user.toJSON();
     }
 
-};
-
-var updateUserSession = function (session, user) {
-    session.userId = user._id;
-    session.authenticated = true;
-    session.login = user.login;
 };

@@ -1,8 +1,7 @@
 'use strict';
 
-var mongoose = require('mongoose');
-
-let messageSchema = mongoose.Schema({
+let mongoose = require('mongoose'),
+    messageSchema = mongoose.Schema({
         text: String,
         author: String,
         created: {
