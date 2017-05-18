@@ -22,8 +22,7 @@
     "supertest": "3.0.0"
   },
   "scripts": {
-    "start": "grunt buildProdAssets && node app.js",
-    "start:dev": "node app.js",
+    "start": "node app.js",
     "build": "grunt buildProdAssets",
     "dmn": "nodemon app.js",
     "test": "node node_modules/mocha/bin/mocha backend/tests/bootstrap.js backend/tests/integration/**.js"
