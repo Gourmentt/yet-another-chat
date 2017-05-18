@@ -2,22 +2,20 @@
 
 var mongoose = require('mongoose');
 
-var messageSchema = mongoose.Schema({
-    text: String,
-    author: String,
-    created: {
-        type: Date,
-        default: Date.now
-    }
-});
-
-var Message = mongoose.model('Message', messageSchema);
+let messageSchema = mongoose.Schema({
+        text: String,
+        author: String,
+        created: {
+            type: Date,
+            default: Date.now
+        }
+    }),
+    Message = mongoose.model('Message', messageSchema);
 
 module.exports = {
 
     save(message){
-
-        var newMessage = {
+        let newMessage = {
             text: message.text,
             author: message.author.login,
             created: Date.now()

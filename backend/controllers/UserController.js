@@ -1,14 +1,12 @@
 'use strict';
 
-var User = require('../models/User'),
+let User = require('../models/User'),
     OnlineUsersList = require('../models/OnlineUsersList');
 
 module.exports = {
 
     getCurrentUser: async function (ctx, next) {
-        var userId = ctx.session.userId;
-
-        let user = await User.findById(userId);
+        let user = await User.findById(ctx.session.userId);
         if(user.login) {
             await OnlineUsersList.add(user.login);
             await OnlineUsersList.broadcast(ctx.app.io);

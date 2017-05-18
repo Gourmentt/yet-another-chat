@@ -1,6 +1,6 @@
 'use strict';
 
-var User = require('../models/User'),
+let User = require('../models/User'),
     Message = require('../models/Message');
 
 module.exports = {

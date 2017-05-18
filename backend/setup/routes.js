@@ -1,11 +1,10 @@
 'use strict';
 
 module.exports = function (app) {
-    var Router             = require('koa-router'),
+    let Router             = require('koa-router'),
         messagesController = require('../controllers/MessagesController'),
-        userController     = require('../controllers/UserController');
-
-    var router = new Router();
+        userController     = require('../controllers/UserController'),
+        router = new Router();
 
     router
         .get('/', messagesController.chat)

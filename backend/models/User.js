@@ -48,7 +48,7 @@ module.exports = {
     },
 
     getHashedString(string){
-        var md5sum = crypto.createHash('sha256');
+        let md5sum = crypto.createHash('sha256');
         md5sum.update(string + config.passwordSalt);
         return md5sum.digest('hex');
     }
