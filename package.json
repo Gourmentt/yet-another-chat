@@ -1,10 +1,11 @@
 {
   "name": "simple-chat",
   "private": true,
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "Just another chat app",
   "keywords": [],
   "dependencies": {
+    "cookie": "0.3.1",
     "grunt": "1.0.1",
     "grunt-contrib-jst": "1.0.0",
     "koa": "2.2.0",

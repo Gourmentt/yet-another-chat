@@ -26,7 +26,7 @@
         init: function () {
             this.container = $('#app-container');
             this.initEventDispatcher();
-            App.socket = new io();
+            this.initSocketIO();
             this.initRouter();
             this.initUser();
         },
@@ -40,7 +40,7 @@
 
         initUser: function () {
             this.curUser = new this.UserModel();
-            this.curUser.fetch()
+            return this.curUser.fetch()
                 .always(function () {
                     Backbone.history.start();
                 });
@@ -50,6 +50,13 @@
             this.router.on('route:chat', this.onChatNav, this);
             this.router.on('route:register', this.onRegisterNav, this);
             this.router.on('route:login', this.onLoginNav, this);
+        },
+
+        initSocketIO: function () {
+            App.socket = new io();
+            window.onbeforeunload = function () {
+                App.socket.emit('disconnect');
+            };
         },
 
 

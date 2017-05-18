@@ -1,14 +1,13 @@
 const Koa = require('koa');
 const app = new Koa();
 
-var session            = require('koa-session-redis'),
+let session            = require('koa-session-redis'),
     config             = require('./backend/config/main'),
     views              = require('koa-views'),
     util               = require('util'),
     mongoose           = require('mongoose'),
     bodyParser         = require('koa-bodyparser'),
-    IO                 = require('koa-socket');
-const io = new IO();
+    OnlineUsersList    = require('./backend/models/OnlineUsersList');
 
 mongoose.connect(util.format('mongodb://%s/%s', config.mongoDB.host, config.mongoDB.db));
 app.keys = ['fadjsbfalirvlvrfajlsdbhfalkshdbg'];
@@ -21,6 +20,6 @@ app
 
 require('./backend/routes')(app);
 
-io.attach(app);
+require('./backend/setup/socketIO')(app);
 
 app.listen(3000);

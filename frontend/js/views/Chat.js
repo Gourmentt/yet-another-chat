@@ -5,7 +5,7 @@
 
         events: {
             'click #send-message-btn': 'sendMessage',
-            'keydown [data-new-message]': 'sendMessageOnEnterKey'
+            'keydown #compose-message': 'sendMessageOnEnterKey'
         },
 
         templates: {
@@ -44,6 +44,7 @@
         initUsersList: function () {
             this.users = new App.UsersCollection();
             this.listenTo(this.users, 'reset', this.renderUsersList);
+            App.curUser.fetch(); // if we come from login/register page, reset event already emitted, we need to emit it again
         },
 
 

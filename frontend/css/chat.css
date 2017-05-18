@@ -76,18 +76,18 @@
     text-align: left;
 }
 .chat-view__message--yours .chat-view__message-body{
-    border: 1px solid #abc1ff;
-    background: #eff3ff;
+    background: #dfe7ff;
 }
-
+.chat-view-message__text {
+    margin-top: 5px;
+}
 .chat-view__message-body {
     max-width: 60%;
     min-width: 250px;
     display: inline-block;
     padding: 10px;
-    border: 1px solid #efeba9;
-    background: #fffeed;
-    box-shadow: 2px 2px 3px -2px grey;
+    background: rgba(251, 249, 165, 0.52);
+    border-radius: 5px;
 }
 span.chat-view-message__author {
     font-weight: bold;

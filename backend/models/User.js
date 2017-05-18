@@ -1,12 +1,12 @@
 'use strict';
 
-var mongoose = require('mongoose'),
-    crypto = require('crypto');
-
-var userSchema = mongoose.Schema({
-    login: String,
-    password: String
-});
+let mongoose = require('mongoose'),
+    crypto = require('crypto'),
+    config = require('../config/main'),
+    userSchema = mongoose.Schema({
+        login: String,
+        password: String
+    });
 userSchema.methods.toJSON = function(){
     return {
         id: this._id,
@@ -28,28 +28,16 @@ module.exports = {
     },
 
     register (login, password) {
-        var newUser = new User({login: login, password: this.getMD5(password)});
+        var newUser = new User({login: login, password: this.getHashedString(password)});
         return newUser.save();
-    },
-
-    getAll (){
-        return User.find();
     },
 
     authenticate (user, ctx){
         ctx.session.userId = user._id;
         ctx.session.authenticated = true;
+        ctx.session.login = user.login;
 
         return user.toJSON();
-    },
-
-    broadcastOnlineUsers (io){
-        return this.getAll().then((users) => {
-            let usersData = users.map((user) => {
-                return {login: user.login}
-            });
-            io.emit('usersReset', usersData)
-        });
     },
 
     checkPassword(login, password){
@@ -58,7 +46,7 @@ module.exports = {
             if(!user){
                 throw new Error('User not found!');
             }
-            if(self.getMD5(password) === user.password) {
+            if(self.getHashedString(password) === user.password) {
                 return user;
             } else {
                 throw new Error('Login or password incorrect');
@@ -66,9 +54,9 @@ module.exports = {
         })
     },
 
-    getMD5(string){
-        var md5sum = crypto.createHash('md5');
-        md5sum.update(string);
+    getHashedString(string){
+        var md5sum = crypto.createHash('sha256');
+        md5sum.update(string + config.passwordSalt);
         return md5sum.digest('hex');
     }
 

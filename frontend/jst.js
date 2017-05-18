@@ -26,7 +26,7 @@ __e( author ) +
 __e( created ) +
 '" class="chat-view-message__created" data-toggle="tooltip">\n        ' +
 __e( created ) +
-'\n      </span>\n    </div>\n    <div class="clearfix"></div>\n    <div class="chat-view-message__body">' +
+'\n      </span>\n    </div>\n    <div class="clearfix"></div>\n    <div class="chat-view-message__text">' +
 __e( text ) +
 '</div>\n  </div>\n</div>\n';
 
@@ -40,7 +40,7 @@ var __t, __p = '', __e = _.escape;
 with (obj) {
 __p += '<div class="chat-view__user">' +
 __e( login ) +
-'</div>\n';
+'</div>';
 
 }
 return __p
