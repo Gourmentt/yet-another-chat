@@ -20,6 +20,7 @@ module.exports = {
             db: 'chat',
             options: {
                 password: process.env.REDIS_PASSWORD,
+                auth_pass: process.env.REDIS_PASSWORD,
             }
         },
         key: 'koa:sess'
