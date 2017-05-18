@@ -10,6 +10,7 @@ module.exports = function (app) {
         .get('/', messagesController.chat)
         .get('/user', userController.getCurrentUser)
         .post('/login', userController.login)
+        .post('/logout', userController.logout)
         .post('/register', userController.register)
         .get('/messages', messagesController.fetchMessages)
         .post('/messages', messagesController.addNewMessage);

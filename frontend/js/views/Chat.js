@@ -5,6 +5,7 @@
 
         events: {
             'click #send-message-btn': 'sendMessage',
+            'click #logout-btn': 'logout',
             'keydown #compose-message': 'sendMessageOnEnterKey'
         },
 
@@ -62,6 +63,10 @@
                 this.messages.sendMessage(message);
                 this.$messageComposer.val('');
             }
+        },
+
+        logout: function () {
+            App.curUser.logout();
         },
 
 

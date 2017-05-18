@@ -31,6 +31,13 @@ module.exports = {
         }
     },
 
+    logout: async function (ctx){
+        await OnlineUsersList.remove(ctx.session.login);
+        await OnlineUsersList.broadcast(ctx.app.io);
+        ctx.session = null;
+        ctx.body = 'logouted';
+    },
+
     register: async function (ctx) {
         let {login, password} = ctx.request.body,
             user = await User.register(login, password);

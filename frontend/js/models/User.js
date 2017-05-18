@@ -5,6 +5,7 @@
 
         url: '/user',
         loginUrl: '/login',
+        logoutUrl: '/logout',
         registerUrl: '/register',
 
         login: function (login, password) {
@@ -23,6 +24,14 @@
               self.set(result);
               App.eventDispatcher.trigger('register');
           }).fail(this.failHandler);
+        },
+
+        logout: function () {
+            var self = this;
+            return $.post(this.logoutUrl, function () {
+                self.clear();
+                App.router.goToLoginPage();
+            });
         },
 
         failHandler: function (jqXHR) {
