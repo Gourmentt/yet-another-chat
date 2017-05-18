@@ -20,5 +20,5 @@ module.exports = {
     key: 'online-users'
   },
   frontendPath: './frontend',
-  appPort: 7777
+  appPort: process.env.PORT
 };
