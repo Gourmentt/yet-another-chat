@@ -2,24 +2,24 @@ const Koa = require('koa');
 const app = new Koa();
 
 let session            = require('koa-session-redis'),
-    config             = require('./backend/config/main'),
+    config             = require('./backend/config/' + app.env),
     views              = require('koa-views'),
-    util               = require('util'),
     mongoose           = require('mongoose'),
-    bodyParser         = require('koa-bodyparser'),
-    OnlineUsersList    = require('./backend/models/OnlineUsersList');
+    bodyParser         = require('koa-bodyparser');
 
-mongoose.connect(util.format('mongodb://%s/%s', config.mongoDB.host, config.mongoDB.db));
+global.config = config;
+
+mongoose.connect(config.mongoDB.uri);
 app.keys = ['fadjsbfalirvlvrfajlsdbhfalkshdbg'];
 
 app
     .use(session(config.session, app))
     .use(views('backend/views', { extension: 'pug' }))
-    .use(require('koa-static')(config.assetsPath))
+    .use(require('koa-static')(config.frontendPath))
     .use(bodyParser());
 
-require('./backend/routes')(app);
+require('./backend/setup/routes')(app);
 
 require('./backend/setup/socketIO')(app);
 
-app.listen(3000);
+app.listen(config.appPort);

@@ -2,7 +2,7 @@
 
 let mongoose = require('mongoose'),
     crypto = require('crypto'),
-    config = require('../config/main'),
+    config = global.config,
     userSchema = mongoose.Schema({
         login: String,
         password: String
@@ -33,25 +33,21 @@ module.exports = {
     },
 
     authenticate (user, ctx){
-        ctx.session.userId = user._id;
-        ctx.session.authenticated = true;
-        ctx.session.login = user.login;
+
 
         return user.toJSON();
     },
 
-    checkPassword(login, password){
-        var self = this;
-        return User.findOne({'login': login}).then((user) => {
-            if(!user){
-                throw new Error('User not found!');
-            }
-            if(self.getHashedString(password) === user.password) {
-                return user;
-            } else {
-                throw new Error('Login or password incorrect');
-            }
-        })
+    async checkPassword (login, password){
+        let user = await User.findOne({'login': login});
+        if(!user){
+            throw new Error('User not found!');
+        }
+        if(this.getHashedString(password) === user.password) {
+            return user;
+        } else {
+            throw new Error('Login or password incorrect');
+        }
     },
 
     getHashedString(string){

@@ -17,15 +17,16 @@ module.exports = {
     },
 
     login: async function (ctx) {
-        let reqBody = ctx.request.body,
-            login = reqBody.login,
-            password = reqBody.password;
+        let {login, password} = ctx.request.body;
 
         try{
-            var user = await User.checkPassword(login, password);
-            ctx.body = User.authenticate(user, ctx);
+            let user = await User.checkPassword(login, password);
+
+            updateUserSession(ctx.session, user);
             await OnlineUsersList.add(user.login);
             await OnlineUsersList.broadcast(ctx.app.io);
+
+            ctx.body = user.toJSON();
         } catch (err){
             ctx.body = {message: err.message};
             ctx.response.status = 500;
@@ -33,16 +34,20 @@ module.exports = {
     },
 
     register: async function (ctx) {
-        var reqBody = ctx.request.body,
-            login = reqBody.login,
-            password = reqBody.password,
-            user = await User.register(login, password),
-            userFormatted = User.authenticate(user, ctx);
+        let {login, password} = ctx.request.body,
+            user = await User.register(login, password);
 
+        updateUserSession(ctx.session, user);
         await OnlineUsersList.add(user.login);
         await OnlineUsersList.broadcast(ctx.app.io);
 
-        ctx.body = userFormatted;
+        ctx.body = user.toJSON();
     }
 
+};
+
+var updateUserSession = function (session, user) {
+    session.userId = user._id;
+    session.authenticated = true;
+    session.login = user.login;
 };

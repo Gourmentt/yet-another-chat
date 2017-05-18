@@ -1,14 +1,14 @@
 'use strict';
 
 const redis = require('redis'),
-      config = require('../config/main.js'),
+      config = global.config,
       cookie = require('cookie'),
       IO = require('koa-socket'),
       OnlineUsersList = require('../models/OnlineUsersList');
 
 let io = new IO();
 
-let redisClient = redis.createClient(config.store);
+let redisClient = redis.createClient(config.redis);
 
 module.exports = function (app) {
 

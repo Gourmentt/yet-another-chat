@@ -1,14 +1,14 @@
 'use strict';
 
 const redis = require('redis'),
-      config = require('../config/main.js');
-let redisClient = redis.createClient(config.store);
+      config = global.config;
+let redisClient = redis.createClient(config.redis);
 
 module.exports = {
 
     add (login){
         return new Promise((resolve, reject) => {
-            redisClient.sadd(config.onlineUsersStorage, login, (err, result) => {
+            redisClient.sadd(config.onlineUsersStorage.key, login, (err, result) => {
                 resolve(login);
             });
         });
@@ -16,7 +16,7 @@ module.exports = {
 
     remove (login){
         return new Promise((resolve, reject) => {
-            redisClient.srem(config.onlineUsersStorage, login, (err, result) => {
+            redisClient.srem(config.onlineUsersStorage.key, login, (err, result) => {
                 resolve(login);
             });
         });
@@ -24,7 +24,7 @@ module.exports = {
 
     getList (){
         return new Promise((resolve, reject) => {
-            redisClient.smembers(config.onlineUsersStorage, (err, result) => {
+            redisClient.smembers(config.onlineUsersStorage.key, (err, result) => {
                 resolve(result.map((elem) => {
                     return {login: elem};
                 }));
