@@ -17,8 +17,8 @@ module.exports = {
             host: process.env.REDIS_HOST,
             port: process.env.REDIS_PORT,
             ttl: 3600,
+            db: 'chat',
             options: {
-                db: 'chat',
                 password: process.env.REDIS_PASSWORD,
             }
         },
