@@ -109,8 +109,8 @@
 
         // Error and success messages handling
         showError: function (jqXHR) {
-            var messageFromJqXHR = jqXHR.responseJSON && jqXHR.responseJSON.message,
-                message = message || jqXHR.status || 'Error happened, please refresh page';
+            var messageFromJqXHR = jqXHR.responseText,
+                message = messageFromJqXHR || jqXHR.status || 'Error happened, please refresh page';
             this.logError(message);
         },
 

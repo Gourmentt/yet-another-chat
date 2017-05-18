@@ -14,7 +14,7 @@
             return $.post(this.loginUrl, {login: login, password: password}, function (result) {
                 self.set(result);
                 App.eventDispatcher.trigger('login');
-            }).fail(this.onRequestFail);
+            }).fail(this.failHandler);
         },
 
         register: function (login, password) {

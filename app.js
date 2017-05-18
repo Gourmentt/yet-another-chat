@@ -12,6 +12,8 @@ global.config = config;
 mongoose.connect(config.mongoDB.uri);
 app.keys = ['fadjsbfalirvlvrfajlsdbhfalkshdbg'];
 
+require('./backend/setup/errors')(app);
+
 app
     .use(session(config.session, app))
     .use(views('backend/views', { extension: 'pug' }))

@@ -15,20 +15,14 @@ module.exports = {
     },
 
     login: async function (ctx) {
-        let {login, password} = ctx.request.body;
+        let {login, password} = ctx.request.body,
+            user = await User.checkPassword(login, password);
 
-        try{
-            let user = await User.checkPassword(login, password);
+        updateUserSession(ctx.session, user);
+        await OnlineUsersList.add(user.login);
+        await OnlineUsersList.broadcast(ctx.app.io);
 
-            updateUserSession(ctx.session, user);
-            await OnlineUsersList.add(user.login);
-            await OnlineUsersList.broadcast(ctx.app.io);
-
-            ctx.body = user.toJSON();
-        } catch (err){
-            ctx.body = {message: err.message};
-            ctx.response.status = 500;
-        }
+        ctx.body = user.toJSON();
     },
 
     logout: async function (ctx){
