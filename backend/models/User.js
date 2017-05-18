@@ -17,25 +17,22 @@ var User = mongoose.model('User', userSchema);
 
 module.exports = {
 
-    findById (id) {
-        return User.findOne({'_id': id}).then((user) => {
-            if(user) {
-                return user.toJSON()
-            } else {
-                return {}
-            }
-        });
+    async findById (id) {
+        let user = await User.findOne({'_id': id});
+        if(user) {
+            return user.toJSON()
+        } else {
+            return {}
+        }
     },
 
-    register (login, password) {
-        var newUser = new User({login: login, password: this.getHashedString(password)});
+    async register (login, password) {
+        let user = await User.findOne({login: login});
+        if(user){
+            throw new Error('User with this login already exists');
+        }
+        let newUser = new User({login: login, password: this.getHashedString(password)});
         return newUser.save();
-    },
-
-    authenticate (user, ctx){
-
-
-        return user.toJSON();
     },
 
     async checkPassword (login, password){
