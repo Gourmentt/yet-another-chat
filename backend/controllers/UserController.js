@@ -39,9 +39,10 @@ module.exports = {
     },
 
     logout: async function (ctx){
-        await OnlineUsersList.remove(ctx.session.login);
-        await OnlineUsersList.broadcast(ctx.app.io);
+        let login = ctx.session.login;
         ctx.session = null;
+        await OnlineUsersList.remove(login);
+        await OnlineUsersList.broadcast(ctx.app.io);
         ctx.body = 'logouted';
     },
 
