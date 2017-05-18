@@ -25,9 +25,8 @@ module.exports = {
     getList (){
         return new Promise((resolve, reject) => {
             redisClient.smembers(config.onlineUsersStorage.key, (err, result) => {
-                resolve(result.map((elem) => {
-                    return {login: elem};
-                }));
+                const users = result.map((login) => ({login}));
+                resolve(users);
             });
         });
     },

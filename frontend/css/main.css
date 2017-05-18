@@ -32,3 +32,15 @@ body, html{
     color: #484848;
     font-weight: bold;
 }
+
+.login-form, .registration-form {
+    border-radius: 0;
+    border-width: 0;
+}
+.registration-form__heading, .login-form__heading {
+    font-size: 2.4em;
+    margin-bottom: 25px;
+}
+.login-form__heading, .registration-form__heading {
+    text-align: center;
+}

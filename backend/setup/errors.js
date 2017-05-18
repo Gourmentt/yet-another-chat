@@ -1,8 +1,8 @@
 'use strict';
 
-module.exports = function (app) {
+module.exports = () => {
 
-    app.use(async (ctx, next) => {
+    return async (ctx, next) => {
         try {
             await next();
         } catch (err) {
@@ -10,6 +10,5 @@ module.exports = function (app) {
             ctx.body = err.message;
             ctx.app.emit('error', err, ctx);
         }
-    });
-
+    };
 };

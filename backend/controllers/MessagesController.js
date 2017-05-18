@@ -7,7 +7,7 @@ module.exports = {
 
     // start page of app
     chat: function (ctx) {
-        return ctx.render('./app')
+        return ctx.render('./app', {env: app.env});
     },
 
     fetchMessages: async function (ctx, next) {

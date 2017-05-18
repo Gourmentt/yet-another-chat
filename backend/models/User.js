@@ -2,7 +2,6 @@
 
 let mongoose = require('mongoose'),
     crypto = require('crypto'),
-    config = global.config,
     userSchema = mongoose.Schema({
         login: String,
         password: String
@@ -27,16 +26,16 @@ module.exports = {
     },
 
     async register (login, password) {
-        let user = await User.findOne({login: login});
+        let user = await User.findOne({login});
         if(user){
             throw new Error('User with this login already exists');
         }
-        let newUser = new User({login: login, password: this.getHashedString(password)});
+        let newUser = new User({login, password: this.getHashedString(password)});
         return newUser.save();
     },
 
     async checkPassword (login, password){
-        let user = await User.findOne({'login': login});
+        let user = await User.findOne({login});
         if(!user){
             throw new Error('User not found!');
         }
@@ -48,9 +47,9 @@ module.exports = {
     },
 
     getHashedString(string){
-        let md5sum = crypto.createHash('sha256');
-        md5sum.update(string + config.passwordSalt);
-        return md5sum.digest('hex');
+        let hasher = crypto.createHash('sha256');
+        hasher.update(string + global.config.passwordSalt);
+        return hasher.digest('hex');
     }
 
 };

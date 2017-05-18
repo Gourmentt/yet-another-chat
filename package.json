@@ -1,7 +1,7 @@
 {
   "name": "simple-chat",
   "private": true,
-  "version": "0.7.0",
+  "version": "0.9.5",
   "description": "Just another chat app",
   "keywords": [],
   "dependencies": {
@@ -35,5 +35,10 @@
   "license": "GNU GPL",
   "engines": {
     "node": "7.10.0"
+  },
+  "devDependencies": {
+    "grunt-contrib-concat": "1.0.1",
+    "grunt-contrib-cssmin": "2.2.0",
+    "grunt-contrib-uglify": "3.0.0"
   }
 }
