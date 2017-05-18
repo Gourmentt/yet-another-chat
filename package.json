@@ -17,7 +17,7 @@
     "koa-views": "6.0.2",
     "mocha": "3.4.1",
     "mongoose": "4.9.9",
-    "pug": "^2.0.0-rc.1",
+    "pug": "",
     "redis": "2.7.1",
     "supertest": "3.0.0"
   },
