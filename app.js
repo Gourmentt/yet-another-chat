@@ -15,7 +15,7 @@ mongoose.connect(config.mongoDB.uri);
 app.keys = ['fadjsbfalirvlvrfajlsdbhfalkshdbg'];
 
 app
-    .use(session(config.session, app))
+    .use(session({store: config.redis}))
     .use(errorHandler())
     .use(views('backend/views', { extension: 'pug' }))
     .use(require('koa-static')(config.frontendPath))
