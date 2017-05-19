@@ -10,6 +10,7 @@ TOC
 * [Installation](#installation)
 * [Environments configuration](#environments configuration)
 * [Tests](#tests)
+* [Live demo](#live demo)
 * [Screenshots](#screenshots)
 
 ##Requirements
@@ -39,14 +40,18 @@ Another env vars to set up production app:
     
 ##Tests
 
-TBD
+Application's backend code is covered by tests. To run it - `npm run test`
+
+##Live demo
+
+I deployed this app to [heroku](http://gour-chat.herokuapp.com), you can try it if  you want to
 
 ##Screenshots
 
 Some screenshots of app:
 
-![Login page](https://raw.githubusercontent.com/Groumentt/simple-chat/master/docs/login.png)
+![Login page](https://raw.githubusercontent.com/Gourmentt/simple-chat/master/docs/login.png)
 
-![Register page](https://raw.githubusercontent.com/Groumentt/simple-chat/master/docs/register.png)
+![Register page](https://raw.githubusercontent.com/Gourmentt/simple-chat/master/docs/register.png)
 
-![Chat page](https://raw.githubusercontent.com/Groumentt/simple-chat/master/docs/chat.png)
+![Chat page](https://raw.githubusercontent.com/Gourmentt/simple-chat/master/docs/chat.png)
