@@ -6,7 +6,7 @@ var __t, __p = '', __e = _.escape;
 with (obj) {
 __p += '<div class="chat-view">\n    <div class="chat-view__left-panel">\n        <div class="chat-view__messages"></div>\n        <div class="chat-view__compose">\n            <textarea id="compose-message" class="no-outline" placeholder="Enter your message here"></textarea>\n            <button type="button" title="Send message" class="no-outline chat-view__send-message-btn" id="send-message-btn">\n                <i class="fa fa-paper-plane-o fa-2x"></i>\n            </button>\n        </div>\n    </div>\n    <div class="chat-view__right-panel">\n        <div class="chat-view__login-panel">\n            <span>You are logged in as: <strong>' +
 __e( username ) +
-'</strong> <a href="#" id="logout-btn">logout</a></span>\n        </div>\n        <div class="chat-view__users">No users online</div>\n    </div>\n</div>';
+'</strong> <a href="#chat" id="logout-btn">logout</a></span>\n        </div>\n        <div class="chat-view__users">No users online</div>\n    </div>\n</div>';
 
 }
 return __p

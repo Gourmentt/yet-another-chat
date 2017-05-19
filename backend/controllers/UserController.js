@@ -34,6 +34,7 @@ module.exports = {
         updateUserSession(ctx.session, user);
         await OnlineUsersList.add(user.login);
         await OnlineUsersList.broadcast(ctx.app.io);
+        console.log('User logged in: %s', user.login);
 
         ctx.body = user.toJSON();
     },
@@ -43,6 +44,7 @@ module.exports = {
         ctx.session = null;
         await OnlineUsersList.remove(login);
         await OnlineUsersList.broadcast(ctx.app.io);
+        console.log('User logouted: %s', login);
         ctx.body = 'logouted';
     },
 
@@ -60,6 +62,7 @@ module.exports = {
         await OnlineUsersList.add(user.login);
         await OnlineUsersList.broadcast(ctx.app.io);
 
+        console.log('User registered: %s', user.login);
         ctx.body = user.toJSON();
     }
 

@@ -19,7 +19,6 @@ module.exports = {
             ttl: 3600,
             db: 'chat',
             options: {
-                password: process.env.REDIS_PASSWORD,
                 auth_pass: process.env.REDIS_PASSWORD,
             }
         },

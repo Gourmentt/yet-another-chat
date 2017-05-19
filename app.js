@@ -28,4 +28,3 @@ require('./backend/setup/socketIO')(app);
 app.listen(config.appPort);
 
 console.log("Started listening as %s env", app.env);
-console.dir(process.env);
